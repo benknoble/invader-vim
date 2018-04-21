@@ -33,7 +33,7 @@ function! s:cursor_on(f)
     redir END
     let s:cursor = substitute(matchstr(s:cursor, 'xxx\zs.*'), "\n", ' ', 'g')
   endif
-  if a:f
+  if a:f && s:cursor !~# '\s*cleared\s*'
     exe "hi Cursor ".s:cursor
   else
     hi Cursor term=NONE ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
